@@ -3,9 +3,7 @@ import uuid
 import pytest
 from google.cloud import datastore
 from langgraph_checkpoint_datastore.saver import DatastoreSaver
-from langgraph_checkpoint_datastore.write import Write
 
-# A dummy serializer for integration testing.
 class DummySerde:
     def dumps_typed(self, obj):
         return ("dummy", obj)
@@ -23,14 +21,12 @@ def real_datastore_client():
 
 @pytest.fixture
 def datastore_saver_integration(real_datastore_client):
-    # Create a DatastoreSaver instance that uses real_datastore_client.
     saver = DatastoreSaver(
         project=real_datastore_client.project,
         serde=DummySerde(),
         checkpoints_kind="IntegrationCheckpoint",
         writes_kind="IntegrationWrite"
     )
-    # Override the client to use our real client.
     saver.client = real_datastore_client
     return saver
 

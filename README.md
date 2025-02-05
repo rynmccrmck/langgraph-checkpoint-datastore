@@ -48,3 +48,14 @@ memory = DatastoreSaver(
     }
 )
 ```
+
+Important note, you will need to add an index to your kinds:
+
+````indexes:
+
+- kind: IntegrationCheckpoint
+  properties:
+  - name: thread_id
+  - name: checkpoint_id
+    direction: desc```
+````
