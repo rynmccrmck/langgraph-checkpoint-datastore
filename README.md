@@ -40,7 +40,7 @@ pass in an object with the configuration options. Below is an example of how
 you can provide custom configuration.
 
 ```python
-memory = DynamoDBSaver(
+memory = DatastoreSaver(
     checkpoints_table_name=checkpoints_table_name,
     writes_table_name=writes_table_name,
     client_config={
